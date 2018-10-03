@@ -1,1 +1,12 @@
 
+在settings.py文件中进行数据库的更改
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'student_db',
+        'USER':'root',
+        'PASSWORD':'root',
+        'HOST':'',
+        'PORT':'3306'
+    }
+}
