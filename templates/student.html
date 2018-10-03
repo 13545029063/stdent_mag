@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+    </style>
+</head>
+<body>
+<script src="/static/jquery-3.3.1.js"></script>
+<div class="bg-info navbar navbar-default " style="padding: 10px 0">
+    <a href="select"  class="btn btn-info btn-lg active" >查询</a>
+    <a href="#"  class="btn btn-info btn-lg active " id="addBth"  >添加</a>
+
+</div>
+
+<div class="">
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+
+            <td>学生姓名</td>
+            <td>年龄</td>
+            <td>性别</td>
+            <td>班级</td>
+            <td>老师</td>
+            <td>操作</td>
+
+        </tr>
+        {% for stu_1 in stu %}
+            <tr>
+                <td na="nid" style="display: none">{{ stu_1.id }}</td>
+                <td na="name">{{ stu_1.name }}</td>
+                <td na="age">{{ stu_1.age }}</td>
+                <td na="sex">{{ stu_1.sex }}</td>
+                <td na="cls_name">{{ stu_1.students_cls__CLS_name }}</td>
+                <td na="theacher" >{{ stu_1.teachers__name }}</td>
+                <td nid-to-value={{ stu_1.id }}>
+                    <a href="#" onclick="write_content(this)" class="glyphicon glyphicon-pencil"></a>
+                    <a href="#" onclick="delete_allline(this)" class="glyphicon glyphicon-trash"></a>
+
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+
+
+
+
+</div>
+<!-- Button trigger modal -->
+<script src="/static/jquery-3.3.1.js"></script>
+<script src="/static/plugins/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">添加学生信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" >
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">姓名：</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="Name" placeholder="姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">年龄：</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="age" placeholder="年龄">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">性别：</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="sex"  value="0"> 男
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="sex"  value="1"> 女
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">班级：</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="Cls">
+                                <option>异能一班</option>
+                                <option>异能二班</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">老师：</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="teacher">
+                                <option>白老师</option>
+                                <option>黑老师</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="add_content" >提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+<div class="modal fade" id="wrtModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">修改学生信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <input type="text" style="display: none" name="nid">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">姓名：</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" placeholder="姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">年龄：</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="age" placeholder="年龄">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">性别：</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="sex"  value="0"> 男
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="sex"  value="1"> 女
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">班级：</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="Cls">
+                                <option>异能一班</option>
+                                <option>异能二班</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">老师：</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="theacher">
+                                <option>白老师</option>
+                                <option>黑老师</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" onclick="write_clik()" >提交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    $(function () {
+        Click_func()//首先在游览器加载函数
+        add_content()
+    })
+    function Click_func() {
+        $("#addBth").click(function () {//找到id为addBth的节点为其添加点击事件，给事件绑定一个函数
+            $('#addModal').modal('show');//此方法是触发模态框，弹出模态框。具体可查bootstrap
+        })
+    }
+    function add_content() {
+        $('#add_content').click(function () {
+            var postData={};
+            $('#addModal').find('input,select').each(function () {{# 对addModal中的input select标签进行取值。用each遍历 #}
+                var v=$(this).val();//取出每个input或select标签中的值
+                var at=$(this).attr('name');//取出每个属性为name的值
+                if (at=='sex') {//对性别进行判断
+                    if ($(this).prop('checked')){//如何name=sex的标签是checked状态（选定状态）对其进行操作
+                        postData[at]=v;//如果没有被选定则进不来赋值
+                    }
+                }
+                else {
+                    postData[at]=v;
+                }
+            });
+            console.log(postData)
+            $.ajax({
+                url:"addStudent",
+                type:"POST",
+                data:postData,
+                success:function (arg) {
+                     window.location.reload();
+                }
+            });
+        })
+    }
+    function write_content(_this) {
+        $(_this).parent().prevAll().each(function(){
+            var t=$(this).text();
+            var n=$(this).attr('na');
+            if (n=='theacher'){
+                $('#wrtModal select[name="theacher"]').val(t)
+            }else if (n=='cls_name'){
+                 $('#wrtModal select[name="Cls"]').val(t)
+            }else if (n=='sex'){
+                if (t=='男'){
+                    $('#wrtModal :radio[value="0"]').prop('checked',true);
+                }else {
+                    $('#wrtModal :radio[value="1"]').prop('checked',true);
+                }
+            }else {
+                $('#wrtModal input[name='+ n +']').val(t)
+            }
+         })
+        $('#wrtModal').modal('show');
+        /*$.ajax({
+            url:'writ_content',
+            type:'GET',
+            data:{nid:nid},
+            success:function(){
+                window.location.reload()
+
+            }
+        })*/
+    }
+    function delete_allline(_this) {
+        var nid= $(_this).parent().attr('nid-to-value');
+        if (confirm('确定删除？')){
+            $.ajax({
+                url:'delete_allline',
+                type:'POST',
+                data:{nid:nid},
+                success:function(){
+                    window.location.reload()
+                    alert('删除成功')
+
+                }
+            })}
+    }
+    function write_clik(){
+        var postList={};
+        $('#wrtModal').find('input,select').each(function (){
+            var v =$(this).val();
+            var n =$(this).attr('name')
+            if (n=='sex') {//对性别进行判断
+                if ($(this).prop('checked')){//如何name=sex的标签是checked状态（选定状态）对其进行操作
+                    postList[n]=v;//如果没有被选定则进不来赋值
+                }
+            }
+            else {
+                postList[n]=v
+            }
+        });
+        console.log(postList)
+        $.ajax({
+            url:'writ_content',
+            type:'POST',
+            data:postList,
+            success:function(arg){
+                window.location.reload()
+            }
+        })
+    }
+</script>
+</body>
+</html>
