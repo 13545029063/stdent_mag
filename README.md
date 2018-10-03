@@ -5,10 +5,10 @@
 DATABASES = {  
     'default': {  
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'student_db',   
+        'NAME': 'student_db',#数据库名称在生产数据库表时需要先建立一个数据库。   
         'USER':'root',  
         'PASSWORD':'root',  
-        'HOST':'',  
+        'HOST':'',  #默认为本机
         'PORT':'3306'  
     }  
 }  
