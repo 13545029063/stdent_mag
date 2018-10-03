@@ -15,4 +15,5 @@ DATABASES = {
 
 
 首先：使用以下命令生产py文件python manage.py makemigrations  
-然后在使用python manage.py migrate生成数据库
+其次：在使用python manage.py migrate生成数据库
+最后：通过python manage.py runserver 8080命令运行
