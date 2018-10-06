@@ -1,5 +1,5 @@
 # Student_demo
-教务管理系统
+基于PC端教务管理系统  
 开发环境：python3 + Django的+ MYSQL+bootstrap  
 在settings.py文件中进行数据库的更改  
 DATABASES = {  
